@@ -11,15 +11,15 @@ from user import User
 app = Flask(__name__)
 
 # bower_components
-@app.route('/bower_components/<path:path>')
+@app.route('/static/bower_components/<path:path>')
 def send_bower(path):
     return send_from_directory(os.path.join(app.root_path, 'bower_components'), path)
 
-@app.route('/dist/<path:path>')
+@app.route('/static/dist/<path:path>')
 def send_dist(path):
     return send_from_directory(os.path.join(app.root_path, 'dist'), path)
 
-@app.route('/js/<path:path>')
+@app.route('/static/js/<path:path>')
 def send_js(path):
     return send_from_directory(os.path.join(app.root_path, 'js'), path)
 
@@ -46,9 +46,9 @@ init_login()
 
 # Create admin
 admin = admin.Admin(app, 
-    'SB-Admin-2', 
+    'Popular Plastic', 
     index_view=AdminIndexView())
 #admin.add_view(BlankView(name='Blank', url='blank', endpoint='blank'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
